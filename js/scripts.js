@@ -4,8 +4,8 @@ var checkIfNumber = function(input) {
   return (parseInt(input));
 }
 
-function Account (name,deposit,password) {
-  this.name = name;
+function Account (userName,deposit,password) {
+  this.userName = userName;
   this.savings = deposit;
   this.checking = 0;
   this.password = password;
@@ -76,9 +76,12 @@ $(document).ready(function () {
     var userPassword = $("input#user-password").val();
 
     var newAccount = new Account (nameInput,initialDepositInput,userPassword);
+    console.log(newAccount);
     $("#account-info").slideToggle("slow");
     $("#savings-balance").text(newAccount.savings);
     $("#checking-balance").text(newAccount.checking);
+    console.log(newAccount.userName);
+    $("#user-greeting").text(newAccount.userName);
 
     $("#new-name").val("");
     $("#initial-deposit").val("");

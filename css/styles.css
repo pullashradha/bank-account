@@ -1,6 +1,7 @@
 .btn, input {
   margin-top: 10px;
   margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 #account-info, #login-screen{
@@ -15,4 +16,9 @@ h4 {
   padding: 15px;
   margin-top: 10px;
   border-radius: 10px;
+}
+
+#withdrawal-savings, #withdrawal-checking {
+  margin-left: 10px;
+  margin-right: 10px;
 }
