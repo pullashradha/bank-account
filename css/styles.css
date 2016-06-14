@@ -1,0 +1,8 @@
+.btn, input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#account-info {
+  display: none;
+}
