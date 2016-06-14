@@ -29,6 +29,9 @@ Account.prototype.withdrawal = function (withdrawalAmount, checkingOrSavings) {
         alert("Error, not enough money in savings bank account");
         return false;
       }
+      if (this.savings===0 && this.checking===0) {
+        alert("Out of money!");   //This is above return true/false because it won't read the if statement otherwise
+      }
       return true;
     } else if (checkingOrSavings === "checking") {
       if (this.checking >= withdrawalAmount) {
@@ -37,9 +40,14 @@ Account.prototype.withdrawal = function (withdrawalAmount, checkingOrSavings) {
         alert("Error, not enough money in checking bank account");
         return false;
       }
+      if (this.savings===0 && this.checking===0) {
+        alert("Out of money!");
+      }
       return true;
     }
-  } else alert ("Please enter a valid amount.")
+  } else {
+    alert ("Please enter a valid amount.");
+  }
 }
 
 Account.prototype.transfer = function(transferAmount, fromAccount, toAccount) {
@@ -50,6 +58,7 @@ Account.prototype.transfer = function(transferAmount, fromAccount, toAccount) {
 
 
 //User Interface Logic
+
 $(document).ready(function () {
 
   $(document).keypress(function(event) {              //Deactivates enter key on keyboard to prompt submit btns
@@ -65,13 +74,13 @@ $(document).ready(function () {
     var initialDepositInput = parseInt($("input#initial-deposit").val());
 
     var newAccount = new Account (nameInput,initialDepositInput);
-    $("#account-info").show();
+    $("#account-info").slideToggle("slow");
     $("#savings-balance").text(newAccount.savings);
     $("#checking-balance").text(newAccount.checking);
 
     $("#new-name").val("");
     $("#initial-deposit").val("");
-    $("#new-account").hide();
+    $("#new-account").slideToggle("slow");
 
     $("#deposit-savings").click(function(event){
       event.preventDefault();
