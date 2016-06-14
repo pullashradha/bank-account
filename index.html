@@ -15,8 +15,8 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <form class="form-group" id="new-account">
+        <div class="col-md-6 col-md-offset-3 act-bg bg-warning" id="new-account">
+          <form class="form-group">
             <h4>New Account</h4>
             <label for="name">Name</label>
             <input type="text" class="form-control" id="new-name">
@@ -26,24 +26,30 @@
           </form>
         </div>
         <div class="col-md-6  col-md-offset-3 text-center" id="account-info">
-          <h4>Savings Account Balance: $<span id="savings-balance"></span></h4>
-          <h4>Checking Account Balance: $<span id="checking-balance"></span></h4>
-          <form class="form-group" id="deposit-form">
-            <label for="deposit">Deposit amount</label>
-            <input type="number" min="1" id="deposit" class="form-control">
-            <div class="btn-group" role="group" aria-label="...">
-              <button id="deposit-savings" class="btn btn-success center-block">Deposit to Savings</button>
-              <button id="deposit-checking" class="btn btn-success center-block">Deposit to Checking</button>
-            </div>
-          </form>
-          <form class="form-group" id="withdrawal-form">
-            <label for="withdrawal">Withdrawal amount</label>
-            <input type="number" min="1" id="withdrawal" class="form-control">
-            <div class="btn-group" role="group" aria-label="...">
-              <button id="withdrawal-savings" class="btn btn-success center-block">Withdraw from Savings</button>
-              <button id="withdrawal-checking" class="btn btn-success center-block">Withdraw from Checking</button>
-            </div>
-          </form>
+          <div class="bg-info act-bg">
+            <h4>Savings Account Balance: $<span id="savings-balance"></span></h4>
+            <form class="form-group" id="savings-form">
+              <label for="savings">Amount</label>
+              <input type="number" min="1" id="savings" class="form-control">
+              <div class="btn-group" role="group" aria-label="...">
+                <button id="deposit-savings" class="btn btn-success center-block">Deposit to Savings</button>
+                <button id="withdrawal-savings" class="btn btn-success center-block">Withdraw from Savings</button>
+                <button id="transfer-to-checking" class="btn btn-success center-block">Transfer to Checking</button>
+              </div>
+            </form>
+          </div>
+          <div class="bg-success act-bg">
+            <h4>Checking Account Balance: $<span id="checking-balance"></span></h4>
+            <form class="form-group" id="checking-form">
+              <label for="checking">Amount</label>
+              <input type="number" min="1" id="checking" class="form-control">
+              <div class="btn-group" role="group" aria-label="...">
+                <button id="deposit-checking" class="btn btn-success center-block">Deposit to Checking</button>
+                <button id="withdrawal-checking" class="btn btn-success center-block">Withdraw from Checking</button>
+                <button id="transfer-to-savings" class="btn btn-success center-block">Transfer to Savings</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ Account.prototype.deposit = function (depositAmount, checkingOrSavings) {
   if (checkingOrSavings === "savings") {
     this.savings += depositAmount;
   } else if (checkingOrSavings === "checking") {
-      this.checking += depositAmount;
+    this.checking += depositAmount;
   }
 }
 
@@ -20,20 +20,30 @@ Account.prototype.withdrawal = function (withdrawalAmount, checkingOrSavings) {
       this.savings -= withdrawalAmount;
     } else if (this.savings < withdrawalAmount) {
       alert("Error, not enough money in savings bank account");
+      return false;
     }
+    return true;
   } else if (checkingOrSavings === "checking") {
     if (this.checking >= withdrawalAmount) {
       this.checking -= withdrawalAmount;
     } else if (this.checking < withdrawalAmount) {
       alert("Error, not enough money in checking bank account");
+      return false;
     }
+    return true;
+  }
+}
+
+Account.prototype.transfer = function(transferAmount, fromAccount, toAccount) {
+  if (this.withdrawal(transferAmount,fromAccount)) {
+    this.deposit(transferAmount,toAccount);
   }
 }
 
 
 //User Interface Logic
 $(document).ready(function () {
-  $("form#new-account").submit(function(event) {
+  $("#new-account form").submit(function(event) {
     event.preventDefault();
 
     var nameInput = $("input#new-name").val();
@@ -50,32 +60,49 @@ $(document).ready(function () {
 
     $("#deposit-savings").click(function(event){
       event.preventDefault();
-      var depositInput = parseInt($("input#deposit").val());
+      var depositInput = parseInt($("input#savings").val());
       newAccount.deposit(depositInput,"savings");
       $("#savings-balance").text(newAccount.savings);
-      $("#deposit").val("");
+      $("#savings").val("");
     });
     $("#deposit-checking").click(function(event){
       event.preventDefault();
-      var depositInput = parseInt($("input#deposit").val());
+      var depositInput = parseInt($("input#checking").val());
       newAccount.deposit(depositInput,"checking");
       $("#checking-balance").text(newAccount.checking);
-      $("#deposit").val("");
+      $("#checking").val("");
     });
 
     $("#withdrawal-savings").click(function(event){
       event.preventDefault();
-      var withdrawalInput = parseInt($("input#withdrawal").val());
+      var withdrawalInput = parseInt($("input#savings").val());
       newAccount.withdrawal(withdrawalInput, "savings");
       $("#savings-balance").text(newAccount.savings);
-      $("#withdrawal").val("");
+      $("#savings").val("");
     });
     $("#withdrawal-checking").click(function(event){
       event.preventDefault();
-      var withdrawalInput = parseInt($("input#withdrawal").val());
+      var withdrawalInput = parseInt($("input#checking").val());
       newAccount.withdrawal(withdrawalInput, "checking");
       $("#checking-balance").text(newAccount.checking);
-      $("#withdrawal").val("");
+      $("#checking").val("");
+    });
+
+    $("#transfer-to-checking").click(function(event){
+      event.preventDefault();
+      var transferInput = parseInt($("input#savings").val());
+      newAccount.transfer(transferInput, "savings","checking");
+      $("#checking-balance").text(newAccount.checking);
+      $("#savings-balance").text(newAccount.savings);
+      $("#savings").val("");
+    });
+    $("#transfer-to-savings").click(function(event){
+      event.preventDefault();
+      var transferInput = parseInt($("input#checking").val());
+      newAccount.transfer(transferInput, "checking","savings");
+      $("#checking-balance").text(newAccount.checking);
+      $("#savings-balance").text(newAccount.savings);
+      $("#checking").val("");
     });
   });
 });
