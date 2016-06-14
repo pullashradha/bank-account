@@ -28,17 +28,20 @@ $(document).ready(function () {
 
     $("#new-name").val("");
     $("#initial-deposit").val("");
-  });
-  $("#deposit-form").submit(function(event){
-    event.preventDefault();
 
-
-
-    $("#deposit").val("");
-  });
-  $("#withdrawal-form").submit(function(event){
-    event.preventDefault();
-
-    $("#withdrawal").val("");
+    $("#deposit-form").submit(function(event){
+      event.preventDefault();
+      var depositInput = parseInt($("input#deposit").val());
+      newAccount.deposit(depositInput);
+      $("#account-balance").text(newAccount.balance);
+      $("#deposit").val("");
+    });
+    $("#withdrawal-form").submit(function(event){
+      event.preventDefault();
+      var withdrawalInput = parseInt($("input#withdrawal").val());
+      newAccount.withdrawal(withdrawalInput);
+      $("#account-balance").text(newAccount.balance);
+      $("#withdrawal").val("");
+    });
   });
 });
