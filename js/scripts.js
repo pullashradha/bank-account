@@ -4,10 +4,11 @@ var checkIfNumber = function(input) {
   return (parseInt(input));
 }
 
-function Account (name,deposit) {
+function Account (name,deposit,password) {
   this.name = name;
   this.savings = deposit;
   this.checking = 0;
+  this.password = password;
 }
 
 Account.prototype.deposit = function (depositAmount, checkingOrSavings) {
@@ -72,8 +73,9 @@ $(document).ready(function () {
 
     var nameInput = $("input#new-name").val();
     var initialDepositInput = parseInt($("input#initial-deposit").val());
+    var userPassword = $("input#user-password").val();
 
-    var newAccount = new Account (nameInput,initialDepositInput);
+    var newAccount = new Account (nameInput,initialDepositInput,userPassword);
     $("#account-info").slideToggle("slow");
     $("#savings-balance").text(newAccount.savings);
     $("#checking-balance").text(newAccount.checking);
@@ -127,6 +129,23 @@ $(document).ready(function () {
       $("#checking-balance").text(newAccount.checking);
       $("#savings-balance").text(newAccount.savings);
       $("#checking").val("");
+
+    });
+    $("#logout").click(function(event){
+      event.preventDefault();
+      $("#account-info").slideToggle();
+      $("#login-screen").slideToggle();
+    });
+    $("#login-form").submit(function(event){
+      event.preventDefault();
+      var passwordLogin = $("#password-login").val();
+      if (passwordLogin === newAccount.password) {
+        $("#login-screen").slideToggle();
+        $("#account-info").slideToggle();
+      } else {
+        alert("Incorrect Password!");
+      }
+      $("#password-login").val("");
     });
   });
 });

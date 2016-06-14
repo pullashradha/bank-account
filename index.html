@@ -13,15 +13,16 @@
       <div class="page-header">
         <h1 class = "text-center">Bank of Computer 5B</h1>
       </div>
-
       <div class="row">
         <div class="col-md-6 col-md-offset-3 act-bg bg-warning" id="new-account">
           <form class="form-group">
-            <h4>New Account</h4>
+            <h4>Create a New Bank Account</h4>
             <label for="name">Name</label>
             <input required type="text" class="form-control" id="new-name">
-            <label for="initial-deposit">Initial deposit amount</label>
+            <label for="initial-deposit">Initial Deposit Amount</label>
             <input required type="number" min="1" id="initial-deposit" class="form-control">
+            <label for="password">Password</label>
+            <input required type="password" id="user-password" class="form-control">
             <button type="submit" class="btn btn-primary center-block">Create Account</button>
           </form>
         </div>
@@ -50,6 +51,16 @@
               </div>
             </form>
           </div>
+          <div class="act-bg bg-danger">
+            <button id="logout" class="btn btn-danger center-block">Log Out</button>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3 act-bg bg-danger" id="login-screen">
+          <form class="form-group" id="login-form">
+            <label for="login">Password</label>
+            <input required type="password" id="password-login" class="form-control">
+            <button type="submit" class="btn btn-primary center-block">Log Back In</button>
+          </form>
         </div>
       </div>
     </div>

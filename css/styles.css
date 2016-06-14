@@ -3,7 +3,7 @@
   margin-bottom: 10px;
 }
 
-#account-info {
+#account-info, #login-screen{
   display: none;
 }
 
