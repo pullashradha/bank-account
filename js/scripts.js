@@ -1,5 +1,9 @@
 //Business Logic
 
+var checkIfNumber = function(input) {
+  return (parseInt(input));
+}
+
 function Account (name,deposit) {
   this.name = name;
   this.savings = deposit;
@@ -7,31 +11,35 @@ function Account (name,deposit) {
 }
 
 Account.prototype.deposit = function (depositAmount, checkingOrSavings) {
-  if (checkingOrSavings === "savings") {
-    this.savings += depositAmount;
-  } else if (checkingOrSavings === "checking") {
-    this.checking += depositAmount;
-  }
+  if (parseInt(depositAmount)>0) {
+    if (checkingOrSavings === "savings") {
+      this.savings += depositAmount;
+    } else if (checkingOrSavings === "checking") {
+      this.checking += depositAmount;
+    }
+  } else alert ("Please enter a valid amount.")
 }
 
 Account.prototype.withdrawal = function (withdrawalAmount, checkingOrSavings) {
-  if (checkingOrSavings === "savings") {
-    if (this.savings >= withdrawalAmount) {
-      this.savings -= withdrawalAmount;
-    } else if (this.savings < withdrawalAmount) {
-      alert("Error, not enough money in savings bank account");
-      return false;
+  if (parseInt(withdrawalAmount)>0) {
+    if (checkingOrSavings === "savings") {
+      if (this.savings >= withdrawalAmount) {
+        this.savings -= withdrawalAmount;
+      } else if (this.savings < withdrawalAmount) {
+        alert("Error, not enough money in savings bank account");
+        return false;
+      }
+      return true;
+    } else if (checkingOrSavings === "checking") {
+      if (this.checking >= withdrawalAmount) {
+        this.checking -= withdrawalAmount;
+      } else if (this.checking < withdrawalAmount) {
+        alert("Error, not enough money in checking bank account");
+        return false;
+      }
+      return true;
     }
-    return true;
-  } else if (checkingOrSavings === "checking") {
-    if (this.checking >= withdrawalAmount) {
-      this.checking -= withdrawalAmount;
-    } else if (this.checking < withdrawalAmount) {
-      alert("Error, not enough money in checking bank account");
-      return false;
-    }
-    return true;
-  }
+  } else alert ("Please enter a valid amount.")
 }
 
 Account.prototype.transfer = function(transferAmount, fromAccount, toAccount) {
