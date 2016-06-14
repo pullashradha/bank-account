@@ -25,11 +25,20 @@ $(document).ready(function () {
     var newAccount = new Account (nameInput,initialDepositInput);
     $("#account-info").show();
     $("#account-balance").text(newAccount.balance);
+
+    $("#new-name").val("");
+    $("#initial-deposit").val("");
   });
   $("#deposit-form").submit(function(event){
     event.preventDefault();
+
+
+
+    $("#deposit").val("");
   });
   $("#withdrawal-form").submit(function(event){
     event.preventDefault();
+
+    $("#withdrawal").val("");
   });
 });
