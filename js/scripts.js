@@ -51,6 +51,13 @@ Account.prototype.transfer = function(transferAmount, fromAccount, toAccount) {
 
 //User Interface Logic
 $(document).ready(function () {
+
+  $(document).keypress(function(event) {              //Deactivates enter key on keyboard to prompt submit btns
+    if(event.which == 13) {
+      event.preventDefault();
+    }
+  });
+
   $("#new-account form").submit(function(event) {
     event.preventDefault();
 
